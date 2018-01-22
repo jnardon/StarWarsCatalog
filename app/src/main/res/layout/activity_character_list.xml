@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="br.com.accera.starwarscatalog.activities.CharacterListActivity">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/catalog_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/main_card_view"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/scan_qr_code_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_qr_code_reader" />
+</FrameLayout>

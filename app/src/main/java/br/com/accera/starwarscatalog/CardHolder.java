@@ -15,6 +15,6 @@ public class CardHolder extends RecyclerView.ViewHolder {
     public CardHolder(View itemView) {
         super(itemView);
 
-        title = itemView.findViewById(R.id.main_line_title);
+        title = itemView.findViewById(R.id.name_label_text_view);
     }
 }
