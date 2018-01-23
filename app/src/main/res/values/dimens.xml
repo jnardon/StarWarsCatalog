@@ -6,6 +6,10 @@
     <dimen name="medium_padding">8dp</dimen>
     <dimen name="big_padding">16dp</dimen>
 
+    <dimen name="small_margin">4dp</dimen>
+    <dimen name="medium_margin">8dp</dimen>
+    <dimen name="big_margin">16dp</dimen>
+
     <dimen name="reycler_view_vertical_separator">4dp</dimen>
     <dimen name="reycler_view_horizontal_separator">8dp</dimen>
 

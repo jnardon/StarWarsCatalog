@@ -1,30 +1,53 @@
-package br.com.accera.starwarscatalog.models;
+package br.com.accera.starwarscatalog.data.models;
 
-import java.util.ArrayList;
+import com.google.gson.annotations.SerializedName;
+
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by juliano.nardon on 22/01/18.
  */
 
-public class CharacterModel {
+public class CharacterModel extends RealmObject {
 
+    @PrimaryKey
+    @SerializedName("name")
     private String name;
+    @SerializedName("height")
     private String height;
+    @SerializedName("mass")
     private String mass;
+    @SerializedName("hair_color")
     private String hairColor;
+    @SerializedName("skin_color")
     private String skinColor;
+    @SerializedName("eye_color")
     private String eyeColor;
+    @SerializedName("birth_year")
     private String birthYear;
+    @SerializedName("gender")
     private String gender;
+    @SerializedName("homeworld")
     private String homeWorld;
-    private ArrayList<String> films;
-    private ArrayList<String> species;
-    private ArrayList<String> vehicles;
-    private ArrayList<String> starships;
+    @SerializedName("films")
+    private RealmList<String> films;
+    @SerializedName("species")
+    private RealmList<String> species;
+    @SerializedName("vehicles")
+    private RealmList<String> vehicles;
+    @SerializedName("starships")
+    private RealmList<String> starships;
+    @SerializedName("created")
     private String created;
+    @SerializedName("edited")
     private String edited;
+    @SerializedName("url")
     private String url;
-
+    private double latitude;
+    private double longitude;
+    private String pickedDate;
 
     public String getName() {
         return name;
@@ -98,35 +121,35 @@ public class CharacterModel {
         this.homeWorld = homeWorld;
     }
 
-    public ArrayList<String> getFilms() {
+    public RealmList<String> getFilms() {
         return films;
     }
 
-    public void setFilms(ArrayList<String> films) {
+    public void setFilms(RealmList<String> films) {
         this.films = films;
     }
 
-    public ArrayList<String> getSpecies() {
+    public RealmList<String> getSpecies() {
         return species;
     }
 
-    public void setSpecies(ArrayList<String> species) {
+    public void setSpecies(RealmList<String> species) {
         this.species = species;
     }
 
-    public ArrayList<String> getVehicles() {
+    public RealmList<String> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(ArrayList<String> vehicles) {
+    public void setVehicles(RealmList<String> vehicles) {
         this.vehicles = vehicles;
     }
 
-    public ArrayList<String> getStarships() {
+    public RealmList<String> getStarships() {
         return starships;
     }
 
-    public void setStarships(ArrayList<String> starships) {
+    public void setStarships(RealmList<String> starships) {
         this.starships = starships;
     }
 
@@ -153,41 +176,29 @@ public class CharacterModel {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getPickedDate() {
+        return pickedDate;
+    }
+
+    public void setPickedDate(String pickedDate) {
+        this.pickedDate = pickedDate;
+    }
 }
 
-/*
-
-{
-    "name": "Luke Skywalker",
-    "height": "172",
-    "mass": "77",
-    "hair_color": "blond",
-    "skin_color": "fair",
-    "eye_color": "blue",
-    "birth_year": "19BBY",
-    "gender": "male",
-    "homeworld": "https://swapi.co/api/planets/1/",
-    "films": [
-        "https://swapi.co/api/films/2/",
-        "https://swapi.co/api/films/6/",
-        "https://swapi.co/api/films/3/",
-        "https://swapi.co/api/films/1/",
-        "https://swapi.co/api/films/7/"
-    ],
-    "species": [
-        "https://swapi.co/api/species/1/"
-    ],
-    "vehicles": [
-        "https://swapi.co/api/vehicles/14/",
-        "https://swapi.co/api/vehicles/30/"
-    ],
-    "starships": [
-        "https://swapi.co/api/starships/12/",
-        "https://swapi.co/api/starships/22/"
-    ],
-    "created": "2014-12-09T13:50:51.644000Z",
-    "edited": "2014-12-20T21:17:56.891000Z",
-    "url": "https://swapi.co/api/people/1/"
-}
-
- */

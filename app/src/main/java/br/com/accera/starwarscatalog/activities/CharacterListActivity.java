@@ -5,22 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
-
-import java.util.ArrayList;
-
-import br.com.accera.starwarscatalog.CardAdapter;
+import br.com.accera.starwarscatalog.lists.adapters.CardAdapter;
 import br.com.accera.starwarscatalog.R;
+import br.com.accera.starwarscatalog.data.services.CharacterService;
 
 public class CharacterListActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView catalogRecyclerView;
     private CardAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +25,14 @@ public class CharacterListActivity extends AppCompatActivity implements View.OnC
         this.setUpRecyclerView();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        mAdapter.mCharacters = CharacterService.instance.getAllCharacters();
+        catalogRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
     private void bindViews() {
         this.catalogRecyclerView = findViewById(R.id.catalog_recycler_view);
 
@@ -38,18 +40,9 @@ public class CharacterListActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setUpRecyclerView() {
-        // Configurando o gerenciador de layout para ser uma lista.
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         catalogRecyclerView.setLayoutManager(layoutManager);
-
-        // Adiciona o adapter que irá anexar os objetos à lista.
-        // Está sendo criado com lista vazia, pois será preenchida posteriormente.
-        ArrayList list = new ArrayList<>(0);
-        list.add("um");
-        list.add("dois");
-        list.add("tres");
-        list.add("quatro");
-        mAdapter = new CardAdapter(list);
+        mAdapter = new CardAdapter(CharacterService.instance.getAllCharacters());
         catalogRecyclerView.setAdapter(mAdapter);
     }
 

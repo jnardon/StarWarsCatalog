@@ -7,12 +7,12 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/reycler_view_vertical_separator"
+        android:layout_marginEnd="@dimen/reycler_view_horizontal_separator"
+        android:layout_marginLeft="@dimen/reycler_view_horizontal_separator"
         android:layout_marginRight="@dimen/reycler_view_horizontal_separator"
         android:layout_marginStart="@dimen/reycler_view_horizontal_separator"
-        android:layout_marginLeft="@dimen/reycler_view_horizontal_separator"
-        android:layout_marginEnd="@dimen/reycler_view_horizontal_separator"
-        android:layout_marginTop="@dimen/reycler_view_vertical_separator"
-        android:layout_marginBottom="@dimen/reycler_view_vertical_separator">
+        android:layout_marginTop="@dimen/reycler_view_vertical_separator">
 
 
         <LinearLayout
@@ -35,7 +35,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/name_label_text_view"
+                    android:id="@+id/name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -43,9 +43,9 @@
                     tools:text="Nome muito louco" />
 
                 <TextView
+                    android:id="@+id/url_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="url.muito.louca"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </LinearLayout>
         </LinearLayout>

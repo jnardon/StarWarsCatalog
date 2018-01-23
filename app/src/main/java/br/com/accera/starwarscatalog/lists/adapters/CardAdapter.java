@@ -1,4 +1,4 @@
-package br.com.accera.starwarscatalog;
+package br.com.accera.starwarscatalog.lists.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,16 +7,20 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.accera.starwarscatalog.lists.holders.CardHolder;
+import br.com.accera.starwarscatalog.R;
+import br.com.accera.starwarscatalog.data.models.CharacterModel;
+
 /**
  * Created by juliano.nardon on 22/01/18.
  */
 
 public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
 
-    private final List<String> mUsers;
+    public List<CharacterModel> mCharacters;
 
-    public CardAdapter(ArrayList users) {
-        mUsers = users;
+    public CardAdapter(ArrayList characters) {
+        mCharacters = characters;
     }
 
     @Override
@@ -27,12 +31,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardHolder> {
 
     @Override
     public void onBindViewHolder(CardHolder holder, int position) {
-        holder.title.setText(mUsers.get(position));
+        holder.nameTextView.setText(mCharacters.get(position).getName());
+        holder.urlTextView.setText(mCharacters.get(position).getUrl());
     }
+
 
     @Override
     public int getItemCount() {
-        return mUsers != null ? mUsers.size() : 0;
+        return mCharacters != null ? mCharacters.size() : 0;
     }
 
 }
