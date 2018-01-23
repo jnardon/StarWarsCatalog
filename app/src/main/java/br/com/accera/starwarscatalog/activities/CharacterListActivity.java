@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import br.com.accera.starwarscatalog.lists.adapters.CardAdapter;
 import br.com.accera.starwarscatalog.R;
@@ -33,6 +34,19 @@ public class CharacterListActivity extends AppCompatActivity implements View.OnC
         catalogRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        LinearLayout emptyDbLinearLayout = findViewById(R.id.empty_db_placeholder_linear_layout);
+
+        if (mAdapter.mCharacters.size() == 0) {
+            emptyDbLinearLayout.setVisibility(View.VISIBLE);
+        } else {
+            emptyDbLinearLayout.setVisibility(View.GONE);
+        }
+    }
+
     private void bindViews() {
         this.catalogRecyclerView = findViewById(R.id.catalog_recycler_view);
 
@@ -54,6 +68,5 @@ public class CharacterListActivity extends AppCompatActivity implements View.OnC
                 startActivity(intent);
                 break;
         }
-
     }
 }

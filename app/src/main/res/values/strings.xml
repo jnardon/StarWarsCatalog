@@ -106,4 +106,6 @@
     <string name="loading">Loading...</string>
 
     <string name="movies">Movies</string>
+
+    <string name="empty_db_place_holder">You still have not made any search.\nIn order to search, click the button below.</string>
 </resources>
