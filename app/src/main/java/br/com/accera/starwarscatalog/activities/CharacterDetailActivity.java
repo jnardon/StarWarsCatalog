@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import br.com.accera.starwarscatalog.R;
 import br.com.accera.starwarscatalog.data.models.CharacterModel;
 import br.com.accera.starwarscatalog.data.models.MovieModel;
 import br.com.accera.starwarscatalog.data.models.MovieResponse;
+import br.com.accera.starwarscatalog.ui.views.MoviePosterView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +27,6 @@ public class CharacterDetailActivity extends AppCompatActivity {
 
     private CharacterModel characterModel;
     private ApiInterface apiService;
-    private ArrayList<MovieModel> movieModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +42,20 @@ public class CharacterDetailActivity extends AppCompatActivity {
     private void getMoviesPosters() {
         apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<MovieModel> call = apiService.getMovie(characterModel.getFilms().get(0));
-        call.enqueue(new Callback<MovieModel>() {
-            @Override
-            public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
-                searchMoviePoster(response.body().getTitle());
-            }
+        for (String film : characterModel.getFilms()) {
+            Call<MovieModel> call = apiService.getMovie(film);
+            call.enqueue(new Callback<MovieModel>() {
+                @Override
+                public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
+                    searchMoviePoster(response.body().getTitle());
+                }
 
-            @Override
-            public void onFailure(Call<MovieModel> call, Throwable t) {
+                @Override
+                public void onFailure(Call<MovieModel> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     private void searchMoviePoster(String movieName) {
@@ -60,8 +64,10 @@ public class CharacterDetailActivity extends AppCompatActivity {
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                movieModels = response.body().getResults();
-                loadMoviePosters();
+                if (response.body().getResults().size() > 0) {
+                    loadMoviePosters(response.body().getResults().get(0));
+                }
+
             }
 
             @Override
@@ -99,7 +105,10 @@ public class CharacterDetailActivity extends AppCompatActivity {
         dateTextView.setText(characterModel.getPickedDate());
     }
 
-    private void loadMoviePosters() {
+    private void loadMoviePosters(MovieModel movieModel) {
+        findViewById(R.id.movie_progress_bar).setVisibility(View.GONE);
 
+        LinearLayout linearLayout = findViewById(R.id.movies_container_linear_layout);
+        linearLayout.addView(new MoviePosterView(this, movieModel));
     }
 }

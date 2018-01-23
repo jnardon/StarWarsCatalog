@@ -104,4 +104,6 @@
     <string name="date">DATE</string>
 
     <string name="loading">Loading...</string>
+
+    <string name="movies">Movies</string>
 </resources>

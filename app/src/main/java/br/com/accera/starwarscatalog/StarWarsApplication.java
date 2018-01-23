@@ -8,7 +8,7 @@ import io.realm.Realm;
  * Created by juliano.nardon on 22/01/18.
  */
 
-public class MyApplication extends Application {
+public class StarWarsApplication extends Application {
 
 
     @Override
